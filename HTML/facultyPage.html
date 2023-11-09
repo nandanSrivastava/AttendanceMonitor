@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Student Manegement</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+    }
+
+    .heading {
+        width: 100%;
+        /* height: 100px; */
+        background-color: green;
+        font-size: 48px;
+        color: white;
+        text-align: center;
+        padding: 20px;
+
+    }
+
+    #school {
+        font-size: 48px;
+        color: deeppink;
+        text-align: center;
+        padding: 20px;
+        font-family: sans-serif;
+        font-weight: 700;
+    }
+
+
+    /* --------------login form ----  */
+    .login {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 400px;
+        grid-gap: 20px;
+        margin: 20px;
+
+    }
+
+    .image {
+        width: 100%;
+        height: 100%;
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .right {
+        background-color: rgb(189, 211, 218);
+        border-radius: 20px;
+    }
+
+    #form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10%;
+
+
+    }
+
+    #form input {
+
+        padding: 12px 20px;
+        margin: 10px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
+
+    #submit:hover {
+        background-color: teal;
+        color: black;
+        border-radius: 5px;
+    }
+
+    .login_head {
+        width: 80%;
+        margin: auto;
+        margin-top: 20px;
+        font-size: 38px;
+        background-color: green;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+
+    /* --------------student form -------------- */
+
+    table,
+    td,
+    th {
+        border: 1px solid #ddd;
+        text-align: left;
+
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: auto;
+        margin-top: 50px;
+
+
+    }
+
+    th,
+    td {
+        padding: 15px;
+        text-align: center;
+    }
+
+    tr>th {
+        background-color: teal;
+        color: white;
+    }
+
+    .studentData {
+        width: 100%;
+        background-color: green;
+        padding: 15px;
+
+    }
+
+    #form1 {
+        margin: auto;
+        width: 80%;
+
+    }
+
+    #form1 input {
+        padding: 10px;
+        margin-right: 15px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
+
+    #form1 input:focus {
+        outline: none;
+    }
+
+    .td6 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+    }
+
+    .td6>button {
+        margin-right: 10px;
+        color: white;
+        border-radius: 5px;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .td6>button:nth-child(1) {
+        background-color: green;
+    }
+
+    .td6>button:nth-child(2) {
+        background-color: red;
+    }
+
+    #absent {
+        background-color: red;
+    }
+    #logo{
+        position: absolute;
+        height: 4.5rem;
+    }
+    #logoName{
+        font-family: 'Calibri' bold black;
+        font-size: 2rem;
+        margin-left: 37rem;
+        margin-bottom: 2rem;
+    }
+</style>
+
+<body>
+    <img src="logo 1.png" id="logo">
+
+    <div class="studentData">
+        <h3 id="logoName">STUDENT ATTENDENCE </h3>
+        <form action="" id="form1">
+            <input type="text" placeholder="Name" id="name" required>
+            <input type="number" placeholder="Number" id="number" required>
+            <input type="text" placeholder="City" id="city" required>
+            <input type="number" placeholder="Roll No" id="rollNo" required>
+            <input type="submit" class="btn btn-warning">
+        </form>
+    </div>
+
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Number</th>
+                <th>City</th>
+                <th>Roll No.</th>
+                <th>Attendence</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="./student.js"></script>
+</body>
+<script>
+    document = document.getElementById("form1").addEventListener("submit", submitFun1);
+
+    var studentDataArr = JSON.parse(localStorage.getItem("studentData")) || [];
+    function submitFun1(e) {
+        document.querySelector("#tbody").innerHTML = "";
+        e.preventDefault();
+        var name = document.querySelector("#name").value;
+        var number = document.querySelector("#number").value;
+        var city = document.querySelector("#city").value;
+        var rollNo = document.querySelector("#rollNo").value;
+
+        var studentObj = {
+            name: name,
+            number: number,
+            city: city,
+            rollNo: rollNo
+        }
+
+        studentDataArr.push(studentObj);
+        localStorage.setItem("studentData", JSON.stringify(studentDataArr));
+        document.querySelector("#form1").reset();
+        alert("Student Added Successfully");
+
+        displayFun(studentDataArr)
+    }
+
+    function displayFun(studentDataArr) {
+
+        var count = 1;
+        studentDataArr.map(function (item) {
+
+            var tr = document.createElement("tr");
+
+            var td1 = document.createElement("td");
+            td1.innerHTML = count++
+            var td2 = document.createElement("td");
+            td2.innerHTML = item.name;
+            var td3 = document.createElement("td");
+            td3.innerHTML = item.number;
+            var td4 = document.createElement("td");
+            td4.innerHTML = item.city;
+            var td5 = document.createElement("td");
+            td5.innerHTML = item.rollNo;
+            var td6 = document.createElement("td");
+            var btn1 = document.createElement("button");
+            btn1.innerHTML = "P";
+            btn1.addEventListener("click", function () {
+                td6.innerHTML = "<button >Present</button>";
+            });
+            var btn2 = document.createElement("button");
+            btn2.innerHTML = "A";
+            btn2.addEventListener("click", function () {
+                td6.innerHTML = "<button id='absent'>Absent</button>";
+
+            });
+            td6.classList.add("td6");
+            td6.append(btn1, btn2);
+
+            tr.append(td1, td2, td3, td4, td5, td6);
+
+            document.querySelector("#tbody").append(tr);
+
+        });
+
+
+    }
+    displayFun(studentDataArr);
+</script>
+
+</html>

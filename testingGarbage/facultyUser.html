@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Attendance Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(180deg, rgba(42, 50, 109, 0.85) 0%, rgba(118, 120, 130, 0.07) 75%, rgba(79, 81, 98, 0.00) 84.38%, rgba(95, 98, 121, 0.07) 100%, rgba(179, 185, 227, 0.03) 100%);
+      background-size: cover;
+    }
+
+    .dashboard {
+      width: 80%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .dashboard-card {
+      width: 25%;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    .dashboard-card h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .dashboard-card p {
+      font-size: 18px;
+    }
+
+    .attendance-form {
+      width: 50%;
+      margin: 0 auto;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    .attendance-form label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .attendance-form input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 20px;
+    }
+
+    .attendance-form button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Attendance Dashboard</h1>
+  <div class="dashboard">
+    <div class="dashboard-card">
+      <h2>Total Employees</h2>
+      <p id="totalEmployees">0</p>
+    </div>
+    <div class="dashboard-card">
+      <h2>Total Present</h2>
+      <p id="totalPresent">0</p>
+    </div>
+    <div class="dashboard-card">
+      <h2>Total Absent</h2>
+      <p id="totalAbsent">0</p>
+    </div>
+  </div>
+
+  <div class="attendance-form">
+    <label for="employeeName">Employee Name</label>
+    <input type="text" id="employeeName" placeholder="Enter Employee Name">
+    <label for="employeeStatus">Employee Status</label>
+    <select id="employeeStatus">
+      <option value="present">Present</option>
+      <option value="absent">Absent</option>
+    </select>
+    <button onclick="markAttendance()">Mark Attendance</button>
+  </div>
+
+  <script>
+    let totalEmployees = 0;
+    let totalPresent = 0;
+    let totalAbsent = 0;
+
+    function markAttendance() {
+      const employeeName = document.getElementById('employeeName').value;
+      const employeeStatus = document.getElementById('employeeStatus').value;
+
+      if (employeeName === '') {
+        alert('Please enter employee name.');
+        return;
+      }
+
+      totalEmployees++;
+      document.getElementById('totalEmployees').textContent = totalEmployees;
+
+      if (employeeStatus === 'present') {
+        totalPresent++;
+        document.getElementById('totalPresent').textContent = totalPresent;
+      } else {
+        totalAbsent++;
+        document.getElementById('totalAbsent').textContent = totalAbsent;
+      }
+
+      document.getElementById('employeeName').value = '';
+    }
+  </script>
+</body>
+
+</html>
